@@ -5,18 +5,20 @@ Given N sorted lists.
 Merged into one sorted list.
  */
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
     public static List<Integer> mergeList(List<List<Integer>> list){
         List<Integer> mergedlist = new ArrayList<>();
+        Queue<Integer> queue = new PriorityQueue<>();
         for (List<Integer> l: list) {
-            mergedlist.addAll(l);
+            queue.addAll(l);
         }
-        Collections.sort(mergedlist);
+        Iterator<Integer> it = queue.iterator();
+        while(it.hasNext()){
+            mergedlist.add(queue.poll());
+        }
         return mergedlist;
     }
 
@@ -31,11 +33,7 @@ public class Main {
         nlist.add(list3);
         nlist.add(list4);
         List<Integer> mergedlist = mergeList(nlist);
-        int i=0;
-        for (List<Integer> x: nlist) {
-            System.out.println("List "+i+":\t"+x);
-            i++;
-        }
-        System.out.println("Merged "+mergedlist);
+        System.out.println("MergedList: "+mergedlist);
+
     }
 }
