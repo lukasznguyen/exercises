@@ -11,14 +11,21 @@ public class Main {
 
     public static List<Integer> mergeList(List<List<Integer>> list){
         List<Integer> mergedlist = new ArrayList<>();
-        Queue<Integer> queue = new PriorityQueue<>();
+        Queue<Pair> queue = new PriorityQueue<>();
         for (List<Integer> l: list) {
-            queue.addAll(l);
+            queue.add(new Pair(l));
         }
-        Iterator<Integer> it = queue.iterator();
-        while(it.hasNext()){
-            mergedlist.add(queue.poll());
+
+        while(queue.size() > 0) {
+            Pair topPair = queue.poll();
+            //System.out.println("Adding\t"+topPair.getCurrent());
+            mergedlist.add(topPair.getCurrent());
+            if(topPair.hasNext()){
+                topPair.moveNext();
+                queue.add(topPair);
+            }
         }
+
         return mergedlist;
     }
 
@@ -32,6 +39,11 @@ public class Main {
         nlist.add(list2);
         nlist.add(list3);
         nlist.add(list4);
+        int i=1;
+        for (List<Integer> list: nlist) {
+            System.out.println("List "+i+"\t"+list);
+            i++;
+        }
         List<Integer> mergedlist = mergeList(nlist);
         System.out.println("MergedList: "+mergedlist);
 
