@@ -1,4 +1,4 @@
-package excercise1;
+package ex1MergingKList;
 
 import java.util.List;
 

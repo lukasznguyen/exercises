@@ -1,4 +1,4 @@
-package excercise1;
+package ex1MergingKList;
 
 /*
 Given N sorted lists.
