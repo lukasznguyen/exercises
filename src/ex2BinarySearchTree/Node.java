@@ -80,6 +80,11 @@ public class Node {
     }
 
     public void delete(Node parent){
+        // parent -> (this -> (left, right))
+        // parent -/-> this
+        // left -> parent
+        // right -> parent
+
         parent.remove(this);
         if(left != null) {
             parent.insert(left);
@@ -100,13 +105,14 @@ public class Node {
     }
 
     // Left - Parent - Right
-    public void inorder(Node node){
-        if(node == null){
-            return;
+    public void inorder(){
+        if (left != null) {
+            left.inorder();
         }
-        inorder(node.left);
-        System.out.print(node.getValue()+" ");
-        inorder(node.right);
+            System.out.print(getValue()+" ");
+        if (right != null) {
+                right.inorder();
+        }
     }
 
     // Left - Right - Parent
@@ -120,10 +126,11 @@ public class Node {
     }
 
     public static Node build(List<Integer> in, List<Integer> post){
-        if(post.size()-1<0 || in.size()<1) return null;
+        if(post.size()-1<0 || in.size()<1) return null; // post.size() == 0
         int value = post.get(post.size()-1);
         Node node = new Node(value);
-        List<Integer> lefti = in.subList(0, in.indexOf(value));
+        int index = in.indexOf(value);
+        List<Integer> lefti = in.subList(0,index );
         List<Integer> leftp = post.subList(0, in.indexOf(value));
         List<Integer> righti = in.subList(in.indexOf(value)+1, in.size());
         List<Integer> rightp = post.subList(in.indexOf(value), post.size()-1);

@@ -30,7 +30,7 @@ public class Main {
         root.preorder(root);
         System.out.println();
         System.out.print("Inorder: ");
-        root.inorder(root);
+        root.inorder();
         System.out.println();
         System.out.print("Postorder: ");
         root.postorder(root);
@@ -53,13 +53,15 @@ public class Main {
         //System.out.println(root.search(nodes.get(0)));
 
         //delete node with two children(5) - exception
-        //root.left.delete(root);
+        root.left.delete(root);
+        System.out.println("----");
+        root.inorder();
         //System.out.println(root);
 
         List<Integer> inorder = List.of(1,3,5,7,9,12,13,15,17,19);
         List<Integer> postorder = List.of(1,3,9,7,5,13,19,17,15,12);
         Node nroot = Node.build(inorder, postorder);
-        nroot.inorder(nroot);
+        //nroot.inorder(nroot);
         System.out.println();
         nroot.postorder(nroot);
         System.out.println();
