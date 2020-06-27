@@ -19,6 +19,8 @@ public class Main {
         graph.dfs(nodes.get(7));
         System.out.print("Path from 5 to 2: ");
         graph.route(nodes.get(5), nodes.get(2));
+        System.out.print("Path from 5 to 2 (DFS version): ");
+        graph.routedfs(nodes.get(5), nodes.get(2));
 
 
     }

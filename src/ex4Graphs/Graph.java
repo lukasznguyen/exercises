@@ -49,6 +49,37 @@ public class Graph {
         }
     }
 
+
+    public void routedfs(Node start, Node end){
+        Map<Node, Boolean> visited = new HashMap<>();
+        List<Node> path = new ArrayList<>();
+        visited.put(start, true);
+        path.add(start);
+        dfshelper2(start, end, visited, path);
+    }
+
+    public boolean dfshelper2(Node current, Node end, Map<Node, Boolean> visited, List<Node> path){
+        for (Node nextNode : data.get(current) ) {
+            if(!visited.containsKey(nextNode)){
+                visited.put(nextNode, true);
+                path.add(nextNode);
+
+                if (nextNode == end){
+                    for (Node node : path) {
+                        System.out.print(node+" ");
+                    }
+                    return true;
+                }
+
+                if (dfshelper2(nextNode, end, visited, path)) {
+                    return true;
+                }
+                path.remove(nextNode);
+            }
+        }
+        return false;
+    }
+
     public void route(Node start, Node finish){
         Queue<Node> queue = new LinkedList<>();
         Map<Node, Boolean> visited = new HashMap<>();
@@ -67,23 +98,22 @@ public class Graph {
             }
         }
 
-        StringBuilder output = new StringBuilder();
-        Node node = finish;
+        printPath(finish, previous, start);
+    }
+
+    private void printPath(Node end, Map<Node, Node> previous, Node start) {
+        List<Node> path = new ArrayList<>();
+        Node node = end;
         while (node != start) {
-            output.append(node).append(" ");
+            path.add(node);
             node = previous.get(node);
         }
-        output.append(start);
-        output = new StringBuilder(reverse(output.toString()));
+        StringBuilder output = new StringBuilder();
+        output.append(" ").append(start);
+        for (int i = path.size() - 1; i >= 0; i--) {
+            output.append(" ").append(path.get(i).toString());
+        }
+
         System.out.println(output);
     }
-
-    public static String reverse(String str){
-        String reversed = "";
-        for(int i=str.length()-1; i>=0; i--){
-            reversed += str.charAt(i);
-        }
-        return reversed;
-    }
-
 }
