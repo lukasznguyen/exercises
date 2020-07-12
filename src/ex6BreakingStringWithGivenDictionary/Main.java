@@ -1,21 +1,9 @@
 package ex6BreakingStringWithGivenDictionary;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class Main {
-    // Dynamic programming: catch
-    //
-    //  I LEARN JAVA
-    // ILEARNJAVA
-    // Shortpathfromnode
-    // Dictionary: dic.containkey(word): true or false
-    // to break the given (input) into word. Everyworld exists in the dictionary.
-    // Short path from node
-    // SHO RTPA THFROM NODE
-
 
     public static void main(String[] args) {
         StringBreak stringBreak = new StringBreak();
@@ -46,22 +34,7 @@ public class Main {
         dictionary.add("HELLO");
         dictionary.add("OLD");
         dictionary.add("MAN");
-
         return dictionary;
     }
 
-
-
-    // HELLOLDMAN
-    // word: HELLO, newS = LDMAN. We cannot break LDMAN into words. tmp=""
-    // word: HELL, newS = OLDMAN --> OLDMAN = OLD and MAN
-
-    // s = "HelloWordTATA"
-    // first word: Hello -> news = WorldTATA
-    // second: World -> newS = TATA
-    // third~: Tata.
-
-    // S = `HELLODL<.....>
-    // word HELLO + DL -->  HELLOLD. Both to call newS = <.....>
-    // words HELL + ODL --> HELLOLD  Both to call newS = <.....>
 }
